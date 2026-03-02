@@ -14,17 +14,13 @@ final readonly class TokenParser
     {
         $decoded = Jwt::decode($token);
 
-        if (!property_exists($decoded, 'payload')) {
-            throw new UnexpectedValueException('Token payload not set');
+        if (!property_exists($decoded, 'resource_access') || !property_exists($decoded, 'emp_id')) {
+            throw new UnexpectedValueException('Token resource_access not set');
         }
-        if (
-            !property_exists($decoded->payload, 'zup_subdivision_id') ||
-            !property_exists($decoded->payload, 'user_id') ||
-            !property_exists($decoded->payload, 'zup_user_id')
-        ) {
-            throw new UnexpectedValueException('Token payload invalid');
+        if (!property_exists($decoded->resource_access, 'education')) {
+            throw new UnexpectedValueException('Token resource_access invalid');
         }
 
-        return Uuid::fromString($decoded->payload->zup_user_id);
+        return Uuid::fromString($decoded->emp_id);
     }
 }
