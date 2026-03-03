@@ -16,14 +16,14 @@ final readonly class PermissionValidator
         private TokenExtractor $tokenExtractor,
     ) {}
 
-    public function validate(string $roleName): bool
+    public function validate(array $roleNames): bool
     {
         $token = $this->tokenExtractor->extract($this->request) ?? throw new UnauthorizedException('No authentication token provided');
 
         $payload = Jwt::decode($token);
 
-        $roles = $payload->resource_access?->education?->roles ?? [];
+        $authRoles = (array) ($payload->resource_access?->education?->roles ?? []);
 
-        return in_array($roleName, (array) $roles, true);
+        return !empty(array_intersect($roleNames, $authRoles));
     }
 }
