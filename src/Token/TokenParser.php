@@ -4,12 +4,20 @@ declare(strict_types=1);
 
 namespace MechtaMarket\AuthClient\Token;
 
+use MechtaMarket\AuthClient\Exception\BeforeValidException;
+use MechtaMarket\AuthClient\Exception\ExpiredException;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use UnexpectedValueException;
 
-final readonly class TokenParser
+final readonly class TokenParser implements TokenParserInterface
 {
+    /**
+     * @param string $token
+     * @return UuidInterface
+     * @throws BeforeValidException
+     * @throws ExpiredException
+     */
     public function parse(string $token): UuidInterface
     {
         $decoded = Jwt::decode($token);
