@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-final readonly class SymfonyTokenParserMiddleware implements EventSubscriberInterface
+readonly class SymfonyTokenParserMiddleware implements EventSubscriberInterface
 {
     public function __construct(
         private TokenParserInterface $tokenParser,
