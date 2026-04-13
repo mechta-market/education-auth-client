@@ -8,12 +8,12 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use MechtaMarket\AuthClient\Exception\UnauthorizedException;
-use MechtaMarket\AuthClient\Token\TokenParser;
+use MechtaMarket\AuthClient\Token\TokenParserInterface;
 
 final readonly class LaravelTokenParserMiddleware
 {
     public function __construct(
-        private TokenParser $tokenParser,
+        private TokenParserInterface $tokenParser,
     ) {}
 
     /**
