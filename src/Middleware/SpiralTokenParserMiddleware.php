@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace MechtaMarket\AuthClient\Middleware;
 
 use MechtaMarket\AuthClient\Exception\UnauthorizedException;
-use MechtaMarket\AuthClient\Token\TokenParserInterface;
+use MechtaMarket\AuthClient\Token\TokenParser;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -14,7 +14,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 readonly class SpiralTokenParserMiddleware implements MiddlewareInterface
 {
     public function __construct(
-        private TokenParserInterface $tokenParser,
+        private TokenParser $tokenParser,
     ) {}
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface

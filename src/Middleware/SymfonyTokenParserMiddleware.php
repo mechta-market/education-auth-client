@@ -6,7 +6,6 @@ namespace MechtaMarket\AuthClient\Middleware;
 
 use MechtaMarket\AuthClient\Exception\UnauthorizedException;
 use MechtaMarket\AuthClient\Token\TokenParser;
-use MechtaMarket\AuthClient\Token\TokenParserInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -15,7 +14,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 readonly class SymfonyTokenParserMiddleware implements EventSubscriberInterface
 {
     public function __construct(
-        private TokenParserInterface $tokenParser,
+        private TokenParser $tokenParser,
     ) {}
 
     public static function getSubscribedEvents(): array
