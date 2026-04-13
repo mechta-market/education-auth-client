@@ -10,7 +10,7 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use UnexpectedValueException;
 
-readonly class TokenParser
+class TokenParser
 {
     /**
      * @param string $token
